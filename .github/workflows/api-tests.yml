@@ -1,0 +1,34 @@
+name: Automated REST API Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Install Newman & Reporters
+      run: npm install
+
+    - name: Run Postman Tests via Newman
+      run: |
+        npm test
+
+    - name: Upload HTML Test Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: newman-html-report
+        path: reports/report.html

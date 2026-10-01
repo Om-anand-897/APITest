@@ -1,0 +1,12 @@
+{
+  "name": "api-automation-newman",
+  "version": "1.0.0",
+  "description": "Automated REST API Test Suite using Postman, Newman, and GitHub Actions",
+  "scripts": {
+    "test": "newman run collections/restful-booker-collection.json -r cli,htmlextra --reporter-htmlextra-export reports/report.html"
+  },
+  "devDependencies": {
+    "newman": "^6.1.0",
+    "newman-reporter-htmlextra": "^1.23.0"
+  }
+}
